@@ -1,0 +1,261 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 1rem;
+    /* Warm beige background */
+    --background: 0.948 0.016 72;
+    --foreground: 0.145 0.002 0;
+    /* Card surface: creamy white */
+    --card: 0.974 0.011 72;
+    --card-foreground: 0.145 0.002 0;
+    --popover: 0.974 0.011 72;
+    --popover-foreground: 0.145 0.002 0;
+    /* Primary: sage green */
+    --primary: 0.553 0.067 170;
+    --primary-foreground: 0.985 0 0;
+    /* Secondary: muted warm gray */
+    --secondary: 0.882 0.038 20;
+    --secondary-foreground: 0.2 0.005 20;
+    /* Muted: blush pink */
+    --muted: 0.912 0.022 60;
+    --muted-foreground: 0.452 0.011 63;
+    /* Accent: sage green light */
+    --accent: 0.88 0.04 170;
+    --accent-foreground: 0.35 0.06 170;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    /* Border: light taupe */
+    --border: 0.836 0.018 60;
+    --input: 0.9 0.015 60;
+    --ring: 0.553 0.067 170;
+    /* Blush header colors */
+    --blush-light: 0.882 0.038 20;
+    --blush-dark: 0.812 0.052 20;
+    --sage: 0.553 0.067 170;
+    --sage-light: 0.88 0.04 170;
+    --taupe: 0.728 0.013 60;
+    --chart-1: 0.553 0.067 170;
+    --chart-2: 0.812 0.052 20;
+    --chart-3: 0.728 0.013 60;
+    --chart-4: 0.646 0.222 41.116;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.974 0.011 72;
+    --sidebar-foreground: 0.145 0.002 0;
+    --sidebar-primary: 0.553 0.067 170;
+    --sidebar-primary-foreground: 0.985 0 0;
+    --sidebar-accent: 0.88 0.04 170;
+    --sidebar-accent-foreground: 0.35 0.06 170;
+    --sidebar-border: 0.836 0.018 60;
+    --sidebar-ring: 0.553 0.067 170;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .blush-gradient {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--blush-light)),
+      oklch(var(--blush-dark))
+    );
+  }
+
+  .sage-glow {
+    box-shadow: 0 0 20px oklch(var(--sage) / 0.3), 0 0 40px
+      oklch(var(--sage) / 0.15);
+  }
+
+  .paper-texture {
+    background-color: oklch(var(--background));
+    background-image: radial-gradient(
+        ellipse at 20% 50%,
+        oklch(var(--blush-light) / 0.3) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 80% 20%,
+        oklch(var(--sage-light) / 0.2) 0%,
+        transparent 40%
+      );
+  }
+
+  .card-shadow {
+    box-shadow: 0 2px 8px oklch(0.145 0.002 0 / 0.06), 0 1px 3px
+      oklch(0.145 0.002 0 / 0.04);
+  }
+
+  .card-shadow-lg {
+    box-shadow: 0 8px 32px oklch(0.145 0.002 0 / 0.08), 0 2px 8px
+      oklch(0.145 0.002 0 / 0.04);
+  }
+}
+
+/* Animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px oklch(0.553 0.067 170 / 0.4), 0 0 40px
+      oklch(0.553 0.067 170 / 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px oklch(0.553 0.067 170 / 0.6), 0 0 80px
+      oklch(0.553 0.067 170 / 0.3);
+  }
+}
+
+@keyframes pulse-glow-blush {
+  0%,
+  100% {
+    box-shadow: 0 0 20px oklch(0.812 0.052 20 / 0.5), 0 0 40px
+      oklch(0.812 0.052 20 / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px oklch(0.812 0.052 20 / 0.7), 0 0 80px
+      oklch(0.812 0.052 20 / 0.4);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes record-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.85;
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(0.3);
+    opacity: 0;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce-gentle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+.animate-pulse-glow-blush {
+  animation: pulse-glow-blush 2s ease-in-out infinite;
+}
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out forwards;
+}
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+.animate-record-pulse {
+  animation: record-pulse 1s ease-in-out infinite;
+}
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+.animate-bounce-gentle {
+  animation: bounce-gentle 2s ease-in-out infinite;
+}
